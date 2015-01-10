@@ -2,10 +2,11 @@
 
 int main(void)
 {
-    Window *window = new Window();
-    window->refresh();
+    Window  *window = new Window();
+    int     ch;
+    int     y = 0;
+    int     x = 0;
 
-    int ch;
     nodelay(stdscr, TRUE);
     while (42)
     {
@@ -15,7 +16,9 @@ int main(void)
         }
         else
         {
+            mvwaddch(window->getWindow(), y, x, 219);
             window->refresh();
+            x++;
         }
     }
     delete window;
