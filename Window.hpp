@@ -5,6 +5,7 @@
 class Window {
     public:
         Window(void);
+        Window(Window const & window);
         ~Window(void);
 
         void    refresh(void);

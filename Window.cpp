@@ -10,6 +10,10 @@ Window::Window(void) {
     this->_win = win;
 }
 
+Window::Window(Window const & window) {
+    *this = window;
+}
+
 Window::~Window(void) {
     endwin();
 }
