@@ -1,6 +1,6 @@
 #include "Entity.hpp"
 
-Entity::Entity(int x, int y) : posX(x), posY(y) {}
+Entity::Entity(int x, int y, Map* map, std::string const & type) : posX(x), posY(y), map(map), type(type) {}
 
 Entity::Entity(Entity const & src) {
 
@@ -14,6 +14,7 @@ Entity &		Entity::operator=(Entity const & src) {
 		this->posX = src.posX;
 		this->posY = src.posY;
 		this->map = src.map;
+		this->type = type;
 	}
 	return *this;
 }
@@ -22,19 +23,24 @@ Entity &		Entity::operator=(Entity const & src) {
 
 //		GETTERS
 
-int				Entity::getX() {
+int				Entity::getX() const {
 
 	return this->posX;
 }
 
-int				Entity::getY() {
+int				Entity::getY() const {
 
 	return this->posY;
 }
 
-Map*			Entity::getMap() {
+Map*			Entity::getMap() const {
 
 	return this->map;
+}
+
+std::string		Entity::getType() const {
+
+	return this->type;
 }
 
 //		SETTERS
@@ -53,3 +59,11 @@ void			Entity::setMap(Map* map) {
 
 	this->map = map;
 }
+
+void			Entity::setType(std::string const & type) {
+
+	this->type = type;
+}
+
+
+
