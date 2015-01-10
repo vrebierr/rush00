@@ -14,18 +14,31 @@ Window::Window(Window const & window) {
     *this = window;
 }
 
+Window &    Window::operator=(Window const & src) {
+
+    if (this != &src) {
+        this->_win = src.getWindow();
+    }
+    return *this;
+}
+
 Window::~Window(void) {
     endwin();
 }
 
-void Window::refresh(void) {
+
+
+void        Window::refresh(void) {
     wrefresh(this->_win);
 }
 
-WINDOW *Window::getWindow(void)  {
+//      GETTERS / SETTERS
+
+
+WINDOW      *Window::getWindow(void)  const {
     return this->_win;
 }
 
-void Window::setWindow(WINDOW *win) {
+void        Window::setWindow(WINDOW *win) {
     this->_win = win;
 }

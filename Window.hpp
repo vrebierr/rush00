@@ -6,12 +6,17 @@ class Window {
     public:
         Window(void);
         Window(Window const & window);
+        Window &	operator=(Window const &);
         ~Window(void);
 
         void    refresh(void);
-        WINDOW  *getWindow(void);
+
+        //	GETTERS SETTERS
+
+        WINDOW  *getWindow(void) const;
         void    setWindow(WINDOW *win);
-    private:
+    
+	private:
         WINDOW  *_win;
 };
 
