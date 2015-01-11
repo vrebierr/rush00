@@ -8,10 +8,15 @@ int main(void)
     int     y = 0;
     int     x = 0;
     time_t  last = time(0);
+    time_t  dt;
+    time_t  now;
 
     nodelay(stdscr, TRUE);
     while (42)
     {
+        now = time(0);
+        now = now - last;
+        last = now;
         if ((ch = getch()) == ERR)
         {
             window->refresh();
