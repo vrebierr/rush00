@@ -1,5 +1,4 @@
 #include "Window.hpp"
-#include <ctime>
 
 int main(void)
 {
@@ -7,21 +6,11 @@ int main(void)
     int     ch;
     int     y = 0;
     int     x = 0;
-    time_t  last = time(0);
-    time_t  dt;
-    time_t  now;
 
     nodelay(stdscr, TRUE);
     while (42)
     {
-        now = time(0);
-        now = now - last;
-        last = now;
-        if ((ch = getch()) == ERR)
-        {
-            window->refresh();
-        }
-        else
+        if ((ch = getch()) != ERR)
         {
             if (ch == KEY_DOWN)
             {
@@ -43,9 +32,11 @@ int main(void)
                 mvwaddch(window->getWindow(), y, x, ch);
                 x++;
             }
-
-            window->refresh();
         }
+        flushinp();
+        window->refresh();
+        delay_output(300);
+
     }
     delete window;
     return 0;
