@@ -5,8 +5,8 @@ Window::Window(void) {
     cbreak();
     noecho();
     keypad(stdscr, TRUE);
-    WINDOW *win = newwin(50, 50, 0, 0);
-    wmove(win, 25, 25);
+    WINDOW *win = newwin(25, 100, 0, 0);
+    wborder(win, '|', '|', '-', '-', '+', '+', '+', '+');
     this->_win = win;
 }
 

@@ -15,8 +15,7 @@ class Window {
 
         WINDOW  *getWindow(void) const;
         void    setWindow(WINDOW *win);
-    
-	private:
+    private:
         WINDOW  *_win;
 };
 
