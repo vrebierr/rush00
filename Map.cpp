@@ -38,6 +38,7 @@ void			Map::Quit() {
 void 			Map::move(int y, int x) {
 	this->_player->setY(y);
 	this->_player->setX(x);
+	this->_map[this->_player->getY()][this->_player->getX()]->setType('>');
 }
 
 void			Map::updatePlayer(int ch) {
@@ -101,7 +102,6 @@ void		Map::setPlayer(Player *player) {
 void 		Map::pushFrame() {
 	int	rand;
 
-	srand (time(NULL));
 	rand = std::rand() % 25;
 
 	for (int x = 0; x < 99; x++) {
