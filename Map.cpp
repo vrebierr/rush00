@@ -108,12 +108,14 @@ void 		Map::pushFrame() {
 				this->_map[y][x - 1]->setType(' ');
 			}
 			else if (this->_map[y][x]->getType() == '-') {
-				if (this->_map[y][x + 2]->getType() == '<')
-					this->_map[y][x + 2]->setType(' ');
+				if (this->_map[y][x + 1]->getType() == '<')
+					this->_map[y][x + 1]->setType(' ');
 				else
-					this->_map[y][x + 2]->setType('-');
+					this->_map[y][x + 1]->setType('+');
 				this->_map[y][x]->setType(' ');
 			}
+			else if (this->_map[y][x]->getType() == '+')
+				this->_map[y][x]->setType('-');
 			else
 				this->_map[y][x]->setType(this->_map[y][x + 1]->getType());
 		}
