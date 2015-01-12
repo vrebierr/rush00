@@ -15,7 +15,6 @@ int main(void)
         if ((ch = getch()) != ERR)
             map->updatePlayer(ch);
 
-        flushinp();
         map->pushFrame();
         window->printEntities(map->getMap());
         window->refresh();

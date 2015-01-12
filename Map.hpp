@@ -24,6 +24,7 @@ class Map {
         void        addEntity(Entity *entity);
         void        pushFrame();
         void        addMissile();
+        void 		move(int x, int y);
 
 
     private:

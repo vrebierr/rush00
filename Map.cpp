@@ -35,27 +35,45 @@ void			Map::Quit() {
 	std::exit(0);
 }
 
-void			Map::updatePlayer(int ch) {
+void 			Map::move(int y, int x) {
+	this->_player->setY(y);
+	this->_player->setX(x);
+}
 
-	if (ch == KEY_UP || ch == KEY_DOWN || ch == KEY_LEFT || ch == KEY_UP)
-	{
-		if (this->_map[this->_player->getY() - 1][this->_player->getX()]->getType() == '<' ||
-			this->_map[this->_player->getY() + 1][this->_player->getX()]->getType() == '<' ||
-			this->_map[this->_player->getY()][this->_player->getX() + 1]->getType() == '<' ||
-			this->_map[this->_player->getY()][this->_player->getX() - 1]->getType() == '<') {
-			Quit();
-			}
-		else {
-			this->_map[this->_player->getY()][this->_player->getX()]->setType(' ');
-			this->_player->action(ch);
-//			this->_player->setType('>');
-			this->_map[this->_player->getY()][this->_player->getX()]->setType('>');
+void			Map::updatePlayer(int ch) {
+	switch (ch) {
+		case KEY_UP: {
+			if (this->_player->getY() == 0)
+				break;
+			this->move(this->_player->getY(), this->_player->getX() - 1);
+			break;
+		}
+		case KEY_DOWN: {
+			if (this->_player->getY() == 24)
+				break;
+			this->move(this->_player->getY(), this->_player->getX() + 1);
+			break;
+		}
+		case KEY_RIGHT: {
+			if (this->_player->getX() == 99)
+				break;
+			this->move(this->_player->getY() + 1, this->_player->getX());
+			break;
+		}
+		case KEY_LEFT: {
+			if (this->_player->getX() == 0)
+				break;
+			this->move(this->_player->getY() - 1, this->_player->getX());
+			break;
+		}
+		case ' ': {
+			this->addMissile();
+		}
+		case 'q': {
+			this->Quit();
 		}
 	}
-	else if (this->_player->attack(ch) == true)
-		this->addMissile();
-	else if (ch == 'q')
-		this->Quit();
+	flushinp();
 }
 
 
