@@ -1,6 +1,7 @@
 #ifndef WINDOW_H
 # define WINDOW_H
 # include <curses.h>
+# include "Entity.hpp"
 
 class Window {
     public:
@@ -13,6 +14,7 @@ class Window {
 
         WINDOW  *getWindow(void) const;
         void    setWindow(WINDOW *win);
+        void    printEntities(Entity ***entities);
     private:
         Window(Window const & window);
         Window &    operator=(Window const &);

@@ -15,6 +15,8 @@ int main(void)
         if ((ch = getch()) != ERR)
             player->action(ch);
 
+        map->pushFrame();
+        window->printEntities(map->getMap());
         window->refresh();
         delay_output(300);
     }

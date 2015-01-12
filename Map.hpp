@@ -17,6 +17,7 @@ class Map {
         void		setPlayer(Player *player);
 
         void        addEntity(Entity *entity);
+        void        pushFrame();
 
     private:
     	Map();
