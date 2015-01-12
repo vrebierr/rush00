@@ -1,9 +1,10 @@
 #ifndef		PLAYER_HPP
 # define	PLAYER_HPP
 
-# include "AEntity.hpp"
+# include "Entity.hpp"
+# include <curses.h>
 
-class Player : public AEntity
+class Player : public Entity
 {
 public:
 	Player(int x, int y, char type);
@@ -12,6 +13,9 @@ public:
 	virtual void	action(int ch);
 	virtual void	move(int x, int y);
 	virtual void	attack();
+
+private:
+	Player();
 };
 
 #endif

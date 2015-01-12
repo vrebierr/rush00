@@ -1,6 +1,6 @@
 #include "Player.hpp"
 
-Player::Player(int x, int y, char type) : AEntity(x, y, type) {}
+Player::Player(int x, int y, char type) : Entity(x, y, type) {}
 
 
 
