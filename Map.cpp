@@ -11,18 +11,36 @@ Map::Map(Player * player) {
 		}
 	}
 	this->_map[13][1] = player;
+	this->_player = player;
 }
 
 Map::~Map(void) {}
 
 
-Entity 	***Map::getMap() const {
+Entity 		***Map::getMap() const {
     return this->_map;
 }
+
+Player 		*Map::getPlayer() const {
+
+	return this->_player;
+}
+
+
 
 void 		Map::setMap(Entity ***map) {
     this->_map = map;
 }
+
+void		Map::setPlayer(Player *player) {
+
+	this->_player = player;
+}
+
+
+
+
+
 
 void 		Map::addEntity(Entity *entity) {
     this->_map[entity->getY()][entity->getX()] = entity;

@@ -1,7 +1,6 @@
 #ifndef 	MAP_HPP
 # define 	MAP_HPP
 
-# include "Entity.hpp"
 # include "Player.hpp"
 
 # include <cstdlib>
@@ -12,7 +11,10 @@ class Map {
         ~Map(void);
 
         Entity      ***getMap() const;
+        Player 		*getPlayer() const;
+
         void        setMap(Entity ***entities);
+        void		setPlayer(Player *player);
 
         void        addEntity(Entity *entity);
 
@@ -22,6 +24,7 @@ class Map {
 		Map &		operator=(Map const &);
 
         Entity      ***_map;
+        Player 		*_player;
 
 };
 

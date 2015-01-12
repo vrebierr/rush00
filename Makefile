@@ -1,2 +1,2 @@
 make:
-	g++ -lncurses Window.cpp main.cpp
+	g++ -lncurses Player.cpp Entity.cpp Map.cpp Window.cpp main.cpp

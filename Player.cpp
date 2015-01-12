@@ -3,6 +3,7 @@
 Player::Player(int x, int y, char type) : Entity(x, y, type) {}
 
 
+void			Player::attack() {}
 
 void			Player::action(int key) {
 
