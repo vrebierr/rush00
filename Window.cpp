@@ -10,18 +10,6 @@ Window::Window(void) {
     this->_win = win;
 }
 
-Window::Window(Window const & window) {
-    *this = window;
-}
-
-Window &    Window::operator=(Window const & src) {
-
-    if (this != &src) {
-        this->_win = src.getWindow();
-    }
-    return *this;
-}
-
 Window::~Window(void) {
     endwin();
 }

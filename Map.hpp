@@ -1,18 +1,28 @@
-#ifndef MAP_H
-# define MAP_H
-# include "Entity.hpp"
+#ifndef 	MAP_HPP
+# define 	MAP_HPP
+
+# include "AEntity.hpp"
+# include "Player.hpp"
+
+# include <cstdlib>
 
 class Map {
     public:
-        Map(void);
-        Map(Map const & map);
+        Map(Player * player);
         ~Map(void);
 
-        Entity      *getEntities(void) const;
-        void        setEntities(Entity *entities);
-        void        pushEntity(Entity entity);
+        AEntity      ***getMap(void) const;
+        void        setMap(AEntity ***entities);
+
+        void        addEntity(AEntity *entity);
+
     private:
-        Entity      *_entities;
+    	Map();
+		Map(Map const & map);
+		Map &		operator=(Map const &);
+
+        AEntity      ***_map;
+
 };
 
 #endif

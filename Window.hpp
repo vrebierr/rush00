@@ -5,8 +5,6 @@
 class Window {
     public:
         Window(void);
-        Window(Window const & window);
-        Window &	operator=(Window const &);
         ~Window(void);
 
         void    refresh(void);
@@ -16,6 +14,9 @@ class Window {
         WINDOW  *getWindow(void) const;
         void    setWindow(WINDOW *win);
     private:
+        Window(Window const & window);
+        Window &    operator=(Window const &);
+
         WINDOW  *_win;
 };
 
