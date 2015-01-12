@@ -26,7 +26,6 @@ class Map {
         void        addMissile();
         void 		move(int x, int y);
 
-
     private:
     	Map();
 		Map(Map const & map);

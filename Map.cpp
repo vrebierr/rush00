@@ -104,17 +104,25 @@ void 		Map::pushFrame() {
 	srand (time(NULL));
 	rand = std::rand() % 25;
 
-	for (int y = 0; y < 24; y++) {
-		for (int x = 0; x < 99; x++) {
+	for (int x = 0; x < 99; x++) {
+		for (int y = 0; y < 25; y++) {
 			if (this->_map[y][x]->getType() == '>') {
 				if (this->_map[y][x + 1]->getType() == '<')
 					this->Quit();
 			}
+			else if (this->_map[y][x]->getType() == '-') {
+				if (this->_map[y][x + 1]->getType() == '<')
+					this->_map[y][x + 1]->setType(' ');
+				else
+					this->_map[y][x + 1]->setType('-');
+			}
 			else
-				this->_map[y][x]->setType(this->_map[y + 1][x + 1]->getType());
+				this->_map[y][x]->setType(this->_map[y][x + 1]->getType());
 		}
 	}
-
+	for (int y = 0; y < 25; y++) {
+		this->_map[y][99]->setType(' ');
+	}
 	if (this->_map[rand][99]->getType() == '>')
 		this->Quit();
 	else
