@@ -4,6 +4,7 @@
 # include "Player.hpp"
 
 # include <cstdlib>
+# include <stdlib.h>
 
 class Map {
     public:
@@ -13,10 +14,15 @@ class Map {
         Entity      ***getMap() const;
         Player 		*getPlayer() const;
 
+        void		Quit();
+
+        void		updatePlayer(int ch);
+
         void        setMap(Entity ***entities);
         void		setPlayer(Player *player);
 
-        void        addEntity(Entity *entity);
+        void        addMissile();
+
 
     private:
     	Map();
