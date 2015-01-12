@@ -8,7 +8,7 @@ class Player : public Entity
 {
 public:
 	Player(int x, int y, char type);
-	virtual ~Player();
+	~Player();
 
 	virtual void	action(int ch);
 	virtual void	move(int x, int y);

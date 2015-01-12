@@ -6,7 +6,7 @@ class Entity
 public:
 	Entity();
 	Entity(int posX, int posY, char type);
-	virtual ~Entity();
+	~Entity();
 
 	virtual void	action(int ch);
 	virtual void	move(int x, int y);

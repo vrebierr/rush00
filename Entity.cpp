@@ -5,6 +5,15 @@ Entity::Entity() : _posX(0), _posY(0), _type('o') {}
 Entity::Entity(int posX, int posY, char type) : _posX(posX), _posY(posY), _type(type) {}
 
 
+
+
+void			Entity::action(int ch) {}
+
+void			Entity::move(int x, int y) {}
+
+void			Entity::attack() {}
+
+
 //	GETTERS
 
 
