@@ -5,7 +5,7 @@
 int main(void)
 {
     Window  *window = new Window();
-    Player  *player = new Player(0, 13, '>');
+    Player  *player = new Player(5, 13, '>');
     Map     *map = new Map(player);
     int     ch;
 

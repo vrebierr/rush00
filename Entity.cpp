@@ -36,16 +36,16 @@ char			Entity::getType() const {
 
 //	SETTERS
 
-void			Entity::setX(int x) {
-
-	if (x >= 0 && x < 25)
-		this->_posX = x;
-}
-
 void			Entity::setY(int y) {
 
-	if (y >= 0 && y < 100)
+	if (y >= 0 && y < 25)
 		this->_posY = y;
+}
+
+void			Entity::setX(int x) {
+
+	if (x >= 0 && x < 100)
+		this->_posX = x;
 }
 
 void			Entity::setType(char type) {

@@ -1,6 +1,4 @@
 #include "Map.hpp"
-#include <stdlib.h>
-#include <time.h>
 
 Map::Map(Player * player) {
 
@@ -15,29 +13,25 @@ Map::Map(Player * player) {
 	this->_player = player;
 }
 
-Map::~Map(void) {}
+Map::~Map(void) {
 
-
+}
 
 void			Map::Quit() {
 
 	delete this->_player;
 	this->_player = NULL;
-	for (int y = 0; y < 25; y++) {
 
-		for (int x = 0; x < 100; x++) {
-			delete this->_map[y][x];
-		}
-		delete [] this->_map[y];
-	}
 	delete [] this->_map;
 	this->_map = NULL;
+	endwin();
 	std::exit(0);
 }
 
 void 			Map::move(int y, int x) {
-	this->_player->setY(y);
-	this->_player->setX(x);
+	this->_map[this->_player->getY()][this->_player->getX()]->setType(' ');
+	this->_player->setY(this->_player->getY() + y);
+	this->_player->setX(this->_player->getX() + x);
 	this->_map[this->_player->getY()][this->_player->getX()]->setType('>');
 }
 
@@ -46,32 +40,34 @@ void			Map::updatePlayer(int ch) {
 		case KEY_UP: {
 			if (this->_player->getY() == 0)
 				break;
-			this->move(this->_player->getY(), this->_player->getX() - 1);
+			this->move(-1, 0);
 			break;
 		}
 		case KEY_DOWN: {
 			if (this->_player->getY() == 24)
 				break;
-			this->move(this->_player->getY(), this->_player->getX() + 1);
+			this->move(1, 0);
 			break;
 		}
 		case KEY_RIGHT: {
 			if (this->_player->getX() == 99)
 				break;
-			this->move(this->_player->getY() + 1, this->_player->getX());
+			this->move(0, 1);
 			break;
 		}
 		case KEY_LEFT: {
 			if (this->_player->getX() == 0)
 				break;
-			this->move(this->_player->getY() - 1, this->_player->getX());
+			this->move(0, -1);
 			break;
 		}
-		case ' ': {
+		case 32: {
 			this->addMissile();
+			return;
 		}
 		case 'q': {
 			this->Quit();
+			return;
 		}
 	}
 	flushinp();
@@ -109,12 +105,14 @@ void 		Map::pushFrame() {
 			if (this->_map[y][x]->getType() == '>') {
 				if (this->_map[y][x + 1]->getType() == '<')
 					this->Quit();
+				this->_map[y][x]->setType(' ');
 			}
 			else if (this->_map[y][x]->getType() == '-') {
-				if (this->_map[y][x + 1]->getType() == '<')
-					this->_map[y][x + 1]->setType(' ');
+				if (this->_map[y][x + 2]->getType() == '<')
+					this->_map[y][x + 2]->setType(' ');
 				else
-					this->_map[y][x + 1]->setType('-');
+					this->_map[y][x + 2]->setType('-');
+				this->_map[y][x]->setType(' ');
 			}
 			else
 				this->_map[y][x]->setType(this->_map[y][x + 1]->getType());
