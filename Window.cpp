@@ -23,12 +23,7 @@ void        Window::printEntities(Entity ***entities) {
     for (int y = 0; y < 25; y++)
     {
         for (int x = 0; x < 100; x++)
-        {
-            if (entities[y][x] != NULL)
-                mvwaddch(this->_win, entities[y][x]->getY() + 1, entities[y][x]->getX() + 1, entities[y][x]->getType());
-            else
-                mvwaddch(this->_win, y + 1, x + 1, ' ');
-        }
+            mvwaddch(this->_win, y + 1, x + 1, entities[y][x]->getType());
     }
 }
 

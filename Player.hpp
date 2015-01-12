@@ -12,7 +12,7 @@ public:
 
 	virtual void	action(int ch);
 	virtual void	move(int x, int y);
-	virtual void	attack();
+	virtual bool	attack(int ch);
 
 private:
 	Player();

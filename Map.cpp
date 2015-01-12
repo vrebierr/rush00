@@ -11,11 +11,51 @@ Map::Map(Player * player) {
 			this->_map[y][x] = new Entity();
 		}
 	}
-	this->_map[13][1] = player;
+	this->_map[player->getY()][player->getX()] = player;
 	this->_player = player;
 }
 
 Map::~Map(void) {}
+
+
+
+void			Map::Quit() {
+
+	delete this->_player;
+	this->_player = NULL;
+	for (int y = 0; y < 25; y++) {
+
+		for (int x = 0; x < 100; x++) {
+			delete this->_map[y][x];
+		}
+		delete [] this->_map[y];
+	}
+	delete [] this->_map;
+	this->_map = NULL;
+	std::exit(0);
+}
+
+void			Map::updatePlayer(int ch) {
+
+	if (ch == KEY_UP || ch == KEY_DOWN || ch == KEY_LEFT || ch == KEY_UP)
+	{
+		if (this->_map[this->_player->getY() - 1][this->_player->getX()]->getType() == '<' ||
+			this->_map[this->_player->getY() + 1][this->_player->getX()]->getType() == '<' ||
+			this->_map[this->_player->getY()][this->_player->getX() + 1]->getType() == '<' ||
+			this->_map[this->_player->getY()][this->_player->getX() - 1]->getType() == '<') {
+			Quit();
+			}
+		else {
+			this->_map[this->_player->getY()][this->_player->getX()]->setType(' ');
+			this->_player->action(ch);
+			this->_player->setType('>');
+			this->_map[this->_player->getY()][this->_player->getX()] = this->_player;
+		}
+	}
+	else if (this->_player->attack(ch) == true)
+		this->addMissile();
+}
+
 
 
 Entity 		***Map::getMap() const {
@@ -44,14 +84,14 @@ void 		Map::pushFrame() {
 	srand (time(NULL));
 	rand = std::rand() % 25;
 
-	for (int y = 0; y < 25; y++) {
+	for (int y = 0; y < 24; y++) {
 		for (int x = 0; x < 99; x++) {
 			if (this->_map[y][x]->getType() == '>') {
 				if (this->_map[y][x + 1]->getType() == '<')
 					exit(0);
 			}
 			else
-				this->_map[y][x] = this->_map[y + 1][x + 1];
+				this->_map[y][x]->setType(this->_map[y + 1][x + 1]->getType());
 		}
 	}
 
@@ -62,6 +102,9 @@ void 		Map::pushFrame() {
 }
 
 
-void 		Map::addEntity(Entity *entity) {
-    this->_map[entity->getY()][entity->getX()] = entity;
+void 		Map::addMissile() {
+	if (this->_map[this->_player->getY()][this->_player->getX() + 1]->getType() == '<')
+    	this->_map[this->_player->getY()][this->_player->getX() + 1]->setType(' ');
+    else
+    	this->_map[this->_player->getY()][this->_player->getX() + 1]->setType('-');
 }

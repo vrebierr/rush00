@@ -1,17 +1,19 @@
 #include "Entity.hpp"
 
-Entity::Entity() : _posX(0), _posY(0), _type('o') {}
+Entity::Entity() : _posX(0), _posY(0), _type(' ') {}
 
 Entity::Entity(int posX, int posY, char type) : _posX(posX), _posY(posY), _type(type) {}
 
-
+Entity::~Entity() {}
 
 
 void			Entity::action(int ch) {}
 
 void			Entity::move(int x, int y) {}
 
-void			Entity::attack() {}
+bool			Entity::attack(int ch) {
+	return true;
+}
 
 
 //	GETTERS
@@ -36,12 +38,14 @@ char			Entity::getType() const {
 
 void			Entity::setX(int x) {
 
-	this->_posX = x;
+	if (x >= 0 && x < 25)
+		this->_posX = x;
 }
 
-void			Entity::setY(int x) {
+void			Entity::setY(int y) {
 
-	this->_posY = x;
+	if (y >= 0 && y < 100)
+		this->_posY = y;
 }
 
 void			Entity::setType(char type) {
