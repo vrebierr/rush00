@@ -1,4 +1,5 @@
 #include "Player.hpp"
+#include <stdlib.h>
 
 Player::Player(int x, int y, char type) : Entity(x, y, type) {}
 
@@ -33,7 +34,6 @@ void			Player::action(int key) {
 			break;
 		}
 	}
-	flushinp();
 }
 
 void			Player::move(int x, int y) {

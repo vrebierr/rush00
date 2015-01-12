@@ -5,7 +5,7 @@
 int main(void)
 {
     Window  *window = new Window();
-    Player  *player = new Player(13, 1, '@');
+    Player  *player = new Player(0, 13, '>');
     Map     *map = new Map(player);
     int     ch;
 
@@ -13,8 +13,9 @@ int main(void)
     while (42)
     {
         if ((ch = getch()) != ERR)
-            player->action(ch);
+            map->updatePlayer(ch);
 
+        flushinp();
         map->pushFrame();
         window->printEntities(map->getMap());
         window->refresh();

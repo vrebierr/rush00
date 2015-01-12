@@ -48,12 +48,14 @@ void			Map::updatePlayer(int ch) {
 		else {
 			this->_map[this->_player->getY()][this->_player->getX()]->setType(' ');
 			this->_player->action(ch);
-			this->_player->setType('>');
-			this->_map[this->_player->getY()][this->_player->getX()] = this->_player;
+//			this->_player->setType('>');
+			this->_map[this->_player->getY()][this->_player->getX()]->setType('>');
 		}
 	}
 	else if (this->_player->attack(ch) == true)
 		this->addMissile();
+	else if (ch == 'q')
+		this->Quit();
 }
 
 
@@ -88,7 +90,7 @@ void 		Map::pushFrame() {
 		for (int x = 0; x < 99; x++) {
 			if (this->_map[y][x]->getType() == '>') {
 				if (this->_map[y][x + 1]->getType() == '<')
-					exit(0);
+					this->Quit();
 			}
 			else
 				this->_map[y][x]->setType(this->_map[y + 1][x + 1]->getType());
@@ -96,7 +98,7 @@ void 		Map::pushFrame() {
 	}
 
 	if (this->_map[rand][99]->getType() == '>')
-		exit(0);
+		this->Quit();
 	else
 		this->_map[rand][99]->setType('<');
 }
