@@ -100,8 +100,8 @@ void 		Map::pushFrame() {
 
 	rand = std::rand() % 25;
 
-	for (int x = 0; x < 99; x++) {
-		for (int y = 0; y < 25; y++) {
+	for (int y = 0; y < 25; y++) {
+		for (int x = 0; x < 100; x++) {
 			if (this->_map[y][x]->getType() == '>') {
 				if (this->_map[y][x + 1]->getType() == '<')
 					this->Quit();

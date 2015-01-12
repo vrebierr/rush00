@@ -18,7 +18,7 @@ int main(void)
         map->pushFrame();
         window->printEntities(map->getMap());
         window->refresh();
-        delay_output(300);
+        delay_output(50);
     }
     delete window;
     return 0;
