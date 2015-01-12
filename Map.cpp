@@ -7,7 +7,6 @@ Map::Map(Player * player) {
 		this->_map[y] = new Entity*[100];
 		for (int x = 0; x < 100; x++) {
 			this->_map[y][x] = new Entity();
-			this->_map[y][x]->setType(' ');
 		}
 	}
 	this->_map[player->getY()][player->getX()] = player;

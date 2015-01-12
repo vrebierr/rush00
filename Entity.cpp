@@ -1,6 +1,6 @@
 #include "Entity.hpp"
 
-Entity::Entity() : _posX(0), _posY(0), _type('o') {}
+Entity::Entity() : _posX(0), _posY(0), _type(' ') {}
 
 Entity::Entity(int posX, int posY, char type) : _posX(posX), _posY(posY), _type(type) {}
 
