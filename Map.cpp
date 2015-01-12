@@ -105,7 +105,7 @@ void 		Map::pushFrame() {
 			if (this->_map[y][x]->getType() == '>') {
 				if (this->_map[y][x + 1]->getType() == '<')
 					this->Quit();
-				this->_map[y][x]->setType(' ');
+				this->_map[y][x - 1]->setType(' ');
 			}
 			else if (this->_map[y][x]->getType() == '-') {
 				if (this->_map[y][x + 2]->getType() == '<')
